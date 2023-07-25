@@ -1,0 +1,25 @@
+<div class="container h-80">
+  <% if @posts.empty? %>
+    <div class="h-100 d-flex flex-column justify-content-center align-items-center">
+      <h1>This is where your Posts will apear.</h1>
+      <%= link_to "Start Writting", new_post_path, class: "pagination-btn fw-bold" %>
+    </div>
+  <% else %>
+    <% @posts.each do |post|  %>
+      <div class="card my-3">
+        <div class="card-body post-card">
+          <h5 class="card-title fw-bold"><%= link_to post.title, post_path(post) %></h5>
+          <p class="card-text fst-italic"><%= post.subtitle %></p>
+          <div class="d-flex justify-content-between">
+            <span class="badge rounded-pill text-bg-info"><%= post.category.name %></span>
+            <p class="card-text fst-italic text-end"><%= post.date.strftime('%b %d, %Y') %></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    <div class="d-flex justify-content-around my-5">
+      <%= link_to_prev_page @posts, 'Previous Page', class: "pagination-btn fw-bold" %>
+      <%= link_to_next_page @posts, 'Next Page', class: "pagination-btn fw-bold" %>
+    </div>
+  <% end %>
+</div>

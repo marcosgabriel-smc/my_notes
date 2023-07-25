@@ -1,0 +1,21 @@
+<div class="container">
+  <h1>New Post</h1>
+  <%= simple_form_for(@post, local: true) do |form| %>
+    <%= form.error_notification %>
+    <!-- other post fields -->
+    <div class="form-inputs">
+      <%= form.input :title %>
+      <%= form.input :subtitle %>
+      <%= form.input :content %>
+      <%= form.association :category, collection: Category.order(:name), prompt: "Select an existing category or create a new one" %>
+      <%= form.input :new_category_name, label: "New Category Name", required: false %>
+      <% if current_user.admin? %>
+        <%= form.input :public, as: :radio_buttons %>
+      <% end %>
+    </div>
+    <div class="form-actions">
+      <%= form.button :submit, class: "pagination-btn" %>
+    </div>
+  <% end %>
+  <%= link_to "Back to all Posts", posts_path, class: "pagination-btn fw-bold" %>
+</div>

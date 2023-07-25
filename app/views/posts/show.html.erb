@@ -1,0 +1,15 @@
+<div class="container">
+  <h1><%= @post.title %></h1>
+  <h2><%= @post.subtitle %></h2>
+  <h3><%= @post.date %></h3>
+  <p><%= @post.content %></p>
+  <% if user_signed_in? %>
+    <%= link_to "Back to all Posts", posts_path, class: "pagination-btn fw-bold" %>
+  <% else %>
+    <%= link_to "Back to all Posts", index_path, class: "pagination-btn fw-bold" %>
+  <% end %>
+  <% if current_user == @post.user %>
+    <%= link_to "Delete this Post", post_path(@post), data: { turbo_method: :delete }, class: "pagination-btn fw-bold" %>
+    <%= link_to "Update this Post", edit_post_path(@post), class: "pagination-btn fw-bold" %>
+  <% end %>
+</div>

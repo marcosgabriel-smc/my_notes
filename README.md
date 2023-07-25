@@ -1,1 +1,9 @@
-Rails app generated with [lewagon/rails-templates](https://github.com/lewagon/rails-templates), created by the [Le Wagon coding bootcamp](https://www.lewagon.com) team.
+Notes to self:
+
+- Implement Search Method
+- Filtering method by categories
+
+- Change the route after user login.
+- Include design for the forms
+- Tom select for categories in the forms
+- Design of the show page

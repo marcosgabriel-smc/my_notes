@@ -1,2 +1,6 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="container d-flex flex-column justify-content-center align-items-center h-100">
+  <h1 class="fw-bold">Welcome to your personal blog!</h1>
+  <p><%= link_to "Create an account", new_user_registration_path, class: "pagination-btn" %> and start writting for yourself.</p>
+  <br>
+  <%= link_to "Also, you can checkout my latest posts...", index_path, class: "pagination-btn" %>
+</div>
