@@ -1,6 +1,6 @@
 .post-card {
   color: #1E5128;
-  background-color: #D8E9A8;
+  background-color: rgb(216, 233, 168)
 }
 
 .card-title > a {
@@ -16,4 +16,11 @@
 .pagination-btn:hover {
   text-decoration: none;
   color: #fec503;
+}
+
+.category-badge {
+  border-color: #D8E9A8;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 4px;
 }

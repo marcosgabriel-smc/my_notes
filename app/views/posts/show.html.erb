@@ -1,15 +1,21 @@
-<div class="container">
-  <h1><%= @post.title %></h1>
-  <h2><%= @post.subtitle %></h2>
-  <h3><%= @post.date %></h3>
-  <p><%= @post.content %></p>
-  <% if user_signed_in? %>
-    <%= link_to "Back to all Posts", posts_path, class: "pagination-btn fw-bold" %>
-  <% else %>
-    <%= link_to "Back to all Posts", index_path, class: "pagination-btn fw-bold" %>
-  <% end %>
-  <% if current_user == @post.user %>
-    <%= link_to "Delete this Post", post_path(@post), data: { turbo_method: :delete }, class: "pagination-btn fw-bold" %>
-    <%= link_to "Update this Post", edit_post_path(@post), class: "pagination-btn fw-bold" %>
-  <% end %>
+<div class="container p-5 my-3">
+  <div class="d-flex row">
+    <p class="w-auto category-badge ms-2">#<%= @post.category.name %></p>
+    <h1 class="fw-bold"><%= @post.title %></h1>
+    <h2 class="fs-3"><%= @post.subtitle %></h2>
+    <h3 class="text-end fst-italic fs-6">Published at <%= @post.date.strftime('%b %d, %Y')%></h3>
+    <p class="text-start"><%= simple_format(@post.content) %></p>
+    <div class="text-center"><i class="fa-solid fa-ellipsis"></i></div>
+    <ul class="list-inline">
+      <% if user_signed_in? %>
+        <li class="list-inline-item"><%= link_to "Back to all Posts", posts_path, class: "pagination-btn fw-bold" %></li>
+      <% else %>
+        <li class="list-inline-item"><%= link_to "Back to all Posts", index_path, class: "pagination-btn fw-bold" %></li>
+      <% end %>
+      <% if policy(@post).edit? %>
+        <li class="list-inline-item"><%= link_to "Update this Post", edit_post_path(@post), class: "pagination-btn fw-bold" %></li>
+        <li class="list-inline-item"><%= link_to "Delete this Post", post_path(@post), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "pagination-btn fw-bold" %></li>
+      <% end %>
+    </ul>
+  </div>
 </div>

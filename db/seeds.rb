@@ -21,7 +21,8 @@ User.create!(
     first_name: 'Marcos',
     last_name: 'Gabriel',
     password: '123456',
-    email: 'marcos@blog.com'
+    email: 'marcos@blog.com',
+    admin: true
   }
 )
 
