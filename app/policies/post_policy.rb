@@ -33,4 +33,8 @@ class PostPolicy < ApplicationPolicy
   def destroy?
     record.user == user
   end
+
+  def show_by_category?
+    true
+  end
 end

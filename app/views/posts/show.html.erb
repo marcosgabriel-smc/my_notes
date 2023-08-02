@@ -1,6 +1,6 @@
 <div class="container p-5 my-3">
   <div class="d-flex row">
-    <p class="w-auto category-badge ms-2">#<%= @post.category.name %></p>
+    <p class="w-auto category-badge ms-2">#<%= link_to @post.category.name, posts_by_category_path(@post.category) %></p>
     <h1 class="fw-bold"><%= @post.title %></h1>
     <h2 class="fs-3"><%= @post.subtitle %></h2>
     <h3 class="text-end fst-italic fs-6">Published at <%= @post.date.strftime('%b %d, %Y')%></h3>

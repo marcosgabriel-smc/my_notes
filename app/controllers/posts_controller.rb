@@ -2,23 +2,19 @@ class PostsController < ApplicationController
 
   before_action :set_post, only: %i[show edit update destroy]
   before_action :authorize_user
-  skip_before_action :authenticate_user!, only: %i[show]
+  skip_before_action :authenticate_user!, only: %i[show show_by_category]
 
-  # GET /posts
   def index
     @posts = policy_scope(Post).order(created_at: :desc).page(params[:page]).per(6)
   end
 
-  # GET /posts/1
   def show
   end
 
-  # GET /posts/new
   def new
     @post = Post.new
   end
 
-  # POST /posts
   def create
     @post = Post.new(post_params)
     @post.user = current_user
@@ -36,13 +32,10 @@ class PostsController < ApplicationController
     end
   end
 
-  # GET /posts/1/edit
   def edit
   end
 
-  # PATCH/PUT /posts/1
   def update
-
     @post.date = Date.today
     if @post.new_category_name.present?
       category = Category.find_or_create_by(name: @post.new_category_name)
@@ -56,10 +49,18 @@ class PostsController < ApplicationController
     end
   end
 
-  # DELETE /posts/1
   def destroy
     @post.destroy
     redirect_to posts_url, notice: "Post was successfully destroyed."
+  end
+
+  def show_by_category
+    @category = Category.find(params[:id])
+    if user_signed_in?
+      @posts = @category.posts.where(user: current_user).order(created_at: :desc).page(params[:page]).per(6)
+    else
+      @posts = @category.posts.where(public: true).order(created_at: :desc).page(params[:page]).per(6)
+    end
   end
 
   private
