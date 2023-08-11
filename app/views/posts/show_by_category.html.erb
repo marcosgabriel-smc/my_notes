@@ -5,6 +5,7 @@
       <%= link_to "Start Writting", new_post_path, class: "pagination-btn fw-bold" %>
     </div>
   <% else %>
+    <h2 class="text-center mt-4">Here are all posts about <%= @posts.last.category.name %></h2>
     <%= render "shared/posts_card", posts: @posts %>
   <% end %>
 </div>

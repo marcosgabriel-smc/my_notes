@@ -5,5 +5,4 @@ Notes to self:
 - Tom select for categories in the forms
 - Include a better way to pass the content of the post. Search for WYSIWYG
 - Error pages
-- About page
 - Web icon in browser tab
